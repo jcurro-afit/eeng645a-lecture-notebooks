@@ -1,0 +1,13 @@
+# these should have been installed by the base
+numpy
+tensorflow-gpu~=2.7.0
+
+# for keras
+Pillow
+pydot
+
+matplotlib
+scikit-learn
+pandas
+h5py
+tqdm

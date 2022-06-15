@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+   eeng645ajupyter:
+      build:
+         context: .
+         dockerfile: Dockerfile
+      image: eeng645ajupyter:latest
+      ports:
+         # this port is for jupyter notebooks
+         - "8888:8888"
+         # these ports are for tensorboard. If you keep making tensorboards the port increments so reserve a range of ports
+         - "6006-6100:6006-6100"
+      # set user to your user id which is usually 1000:1000 to check you user id run `echo $(id -u):$(id -g)`
+      user: 1000:1000
+      volumes: 
+         # pass through the passwd file so the system knows your username
+         - "/etc/passwd:/etc/passwd"
+         # so keras can save downloaded datasets
+         - "/opt/data/.keras:/tmp/.keras"
+         # default location to store data
+         - "/opt/data/:/opt/data/"
+         # in case you actually need a home directory
+         - "/home:/home"
+         # path for where the notebooks are stored on your computer.
+         # default path is this directory
+         - ".:/tf"
+
